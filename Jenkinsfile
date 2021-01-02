@@ -1,16 +1,6 @@
 pipeline {
   agent any
   stages {
-    stage ('Login Docker') {
-      when {
-        branch 'main'
-      }
-      steps {
-        script {
-          sh 'sudo docker login --username foo --password-stdin'
-        }
-      }
-    }
     stage ('Build Docker Image') {
       when {
         branch 'main'

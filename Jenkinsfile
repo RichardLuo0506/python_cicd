@@ -30,7 +30,7 @@ pipeline {
       steps {
         input 'Deploy to production?'
         milestone(1)
-        withCredentials([usernamePassword(credentialsId: '5e322410-00af-4ee3-b2ff-6bf5ffd0f194', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+        sshagent (credentials: ['5e322410-00af-4ee3-b2ff-6bf5ffd0f194']) {
           script {
               sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@$prod_ip \"docker pull richardluo0506/test:latest\""
               try {
